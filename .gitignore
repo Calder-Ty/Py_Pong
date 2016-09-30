@@ -1,0 +1,8 @@
+# Ignore VS crap
+*.vs/
+*.sln
+
+# Ignore pyc stuff
+*.pyc
+*/__pycache__/
+*.pyproj

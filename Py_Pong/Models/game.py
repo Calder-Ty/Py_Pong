@@ -1,6 +1,6 @@
 from Py_Pong.Models import paddle
 
-class game(object):
+class Game(object):
 
     def __init__(self):
 

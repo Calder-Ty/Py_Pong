@@ -23,3 +23,8 @@ class Py_PongMain():
 
             # Display Console
             Console.show();
+
+
+if __name__ == "__main__":
+    app = Py_PongMain();
+    app.main();

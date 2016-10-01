@@ -7,12 +7,12 @@ class Display(object):
     #_SCREEN_WIDTH = 600;
     #_SCREEN_HEIGHT = 400;
 
-    def __init__(self, width, height):
-        self.Screen = pygame.display.set_mode([width, height]);
+    def __init__(self, GameData):
+        self.Screen = pygame.display.set_mode([GameData.Field_Width, GameData.Field_Height]);
         pygame.display.set_caption("PyPong!");
         self.Background = pygame.Surface(self.Screen.get_size());
         self.Background.convert();
-        self.Ball_Sprite = BallSprite();
+        self.Ball_Sprite = BallSprite(GameData.ball);
 
         # REFACTOR: 
         # Currently the Screen is Black, here rather than

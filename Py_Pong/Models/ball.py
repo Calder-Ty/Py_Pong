@@ -1,4 +1,5 @@
 from math import sin, cos;
+from Py_Pong.events import Event;
 
 class Ball(object):
     """
@@ -41,11 +42,19 @@ class Ball(object):
     def Y(self,y):
         self._y = y;
 
+    
+    ### EVENTS ###
+    calcNewPosEvent = Event();
+    def OnCalcNewPosEvent(self):
+        Ball.calcNewPosEvent.call(self, self.X, self.Y);
+    ### METHODS ###
     def calc_new_pos(self)->None:
         """ Calculates new X and Y coordinates """
         angle, z = self._vector;
         (dx,dy) = (z*cos(angle), z*sin(angle));
         self.X += dx;
         self.Y += dy;
-        print(self.X);
-        print(self.Y);
+        self.OnCalcNewPosEvent();
+
+
+    

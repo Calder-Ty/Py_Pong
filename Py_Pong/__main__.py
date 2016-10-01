@@ -7,7 +7,8 @@ class Py_PongMain():
 
     def main(self):
         GameData = game.Game();
-        Console = display.Display(GameData.Field_Width, GameData.Field_Height);
+        print(type(GameData.ball.calcNewPosEvent))
+        Console = display.Display(GameData);
         
         # Handle Events
         while True:
@@ -19,7 +20,6 @@ class Py_PongMain():
 
             # Update Game Data with Logic
             GameData.update();
-            Console.Ball_Sprite.update_pos(x =GameData.ball.X, y =GameData.ball.Y);
 
             # Display Console
             Console.show();

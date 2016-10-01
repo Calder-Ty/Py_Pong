@@ -4,7 +4,7 @@ except ImportError:
     from distutils import setup
 
 config = {
-    'description':'Impelementation of Pong in Python, for training and teaching OOP',
+    'description':'Impelementation of Pong in Python, for training and teaching OOP/MVC',
 
     'author': 'Tyler Calder',
 
@@ -14,7 +14,7 @@ config = {
 
     'version' : '0.1',
 
-    'install_requires' :['nose','sys'],
+    'install_requires' :['unittest','sys', 'math', 'pygame'],
 
     'packages' : [],
 

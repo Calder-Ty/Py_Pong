@@ -20,6 +20,11 @@ class Game(object):
     def update(self):
         # move the ball
         self.ball.calc_new_pos();
+        if self.ball.X > self.Field_Width or self.ball.X < 0:
+            raise Exception("Balls X position Is out Of Bounds!");
+        if self.ball.Y > self.Field_Height or self.ball.Y <0:
+            raise Exception("Balls Y position Is Out of Bounds!");
+        
     
 
     

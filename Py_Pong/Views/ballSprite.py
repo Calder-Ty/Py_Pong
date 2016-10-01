@@ -9,6 +9,7 @@ class BallSprite(pygame.sprite.Sprite):
 
         self.image = pygame.image.load("Resources/ball.bmp");
         self.rect = self.image.get_rect();
+        self.__Ball = Ball
         Ball.calcNewPosEvent += self.update_pos;
 
     def update_pos(self, subject, x, y):
@@ -16,4 +17,4 @@ class BallSprite(pygame.sprite.Sprite):
         self.rect.y = y;
 
     def close(self):
-        Ball.calcNewPosEvent -= self.update_pos;
+        self.__Ball.calcNewPosEvent -= self.update_pos;

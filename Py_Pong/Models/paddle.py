@@ -3,6 +3,7 @@
 class Paddle(object):
 
     def __init__(self, x, y):
+        # X,Y are pos of upper left corner
         self.X = x;
         self.Y = y;
 
@@ -22,4 +23,3 @@ class Paddle(object):
         if y < 0:
             raise Exception("Y is out of bounds");
         self._y = y;
-    

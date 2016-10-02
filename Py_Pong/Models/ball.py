@@ -27,6 +27,7 @@ class Ball(object):
         self.Width = 1;
         self.Height = 1;
         self._vector = (angle, speed);
+        self.isHit = False;
 
     @property
     def X(self):

@@ -12,7 +12,6 @@ class Py_PongMain():
     def main(self):
         # Setup Game
         GameData = game.Game();
-        print(GameData.PlayerPaddle.X)
         Console = display.Display(GameData);
         Player = paddleController.PaddleController(GameData.PlayerPaddle, GameData.Field_Height);
         Player.setShape(Console.Player_Sprite.rect.width, Console.Player_Sprite.rect.height);

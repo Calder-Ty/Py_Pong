@@ -1,5 +1,5 @@
+import time;
 from Py_Pong.events import Event;
-
 
 
 class Paddle(object):
@@ -12,14 +12,17 @@ class Paddle(object):
     X
     Y 
     """
-
+    timebetweenMoves = 4; 
 
     def __init__(self, x, y):
         # X,Y are pos of upper left corner
         self._ready = False;
         self.X = x;
         self.Y = y;
+        self.Width = 1;
+        self.Height = 1;
         self._ready = True;
+        self.timeAtNextMove = 0
 
     @property
     def X(self):
@@ -27,8 +30,6 @@ class Paddle(object):
 
     @X.setter
     def X(self, x):
-        if x < 0:
-            raise Exception("X is out of bounds");
         self._x = x;
         if self._ready:
             self.onPaddleMove();
@@ -39,8 +40,6 @@ class Paddle(object):
         
     @Y.setter
     def Y(self, y):
-        if y < 0:
-            raise Exception("Y is out of bounds");
         self._y = y;
         if self._ready:
             self.onPaddleMove();
@@ -51,3 +50,23 @@ class Paddle(object):
     paddleMoveEvent = Event();
     def onPaddleMove(self):
         Paddle.paddleMoveEvent.call(self, self.X, self.Y);
+
+    def movePaddle(self, Ball):
+        """ Computer's Algorithim to Move Paddle """
+        Center = Ball.Y + Ball.Height/2;
+        if Center > self.Y + self.Height/2 and self.checkTime():
+            self.Y += 1;
+            self.timeAtNextMove = time.time() + self.timebetweenMoves/1000;
+        if Center < self.Y + self.Height/2 and self.checkTime():
+            self.Y -= 1;
+            self.timeAtNextMove = time.time() + self.timebetweenMoves/1000;
+    
+    def checkTime(self)->bool:
+        if time.time() > self.timeAtNextMove:
+            return True;
+        else:
+            return False;
+
+    def reset(self, X, Y):
+        self.X = X;
+        self.Y = Y;

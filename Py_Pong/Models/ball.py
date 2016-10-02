@@ -13,7 +13,7 @@ class Ball(object):
     Y
     _vector: Holds information for movement
     """
-
+    ### MAGIC METHODS ###
     def __init__(self,x:int,y:int,angle:float,speed:int):
         """
         Initalizes Ball Obect
@@ -28,7 +28,7 @@ class Ball(object):
         self.Height = 1;
         self._vector = (angle, speed);
         self.isHit = False;
-
+    ### PROPERTIES ### 
     @property
     def X(self):
         return self._x;

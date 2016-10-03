@@ -14,13 +14,13 @@ config = {
 
     'version' : '0.1',
 
-    'install_requires' :['unittest','sys', 'math', 'pygame'],
+    'install_requires' :['unittest','sys', 'math', 'pygame', 'numpy'],
 
     'packages' : [],
 
     'scripts': [],
 
-    'name': ''
+    'name': 'Py_Pong'
 
     }
 

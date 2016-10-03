@@ -8,21 +8,29 @@ class Paddle(object):
 
     @Methods:
     onPaddleMove
+    movePaddle
+    _checkTime
+    reset
     @Properties:
     X
-    Y 
+    Y
+    Width
+    Height
+    _ready
+    _timeAtNextMove
     """
     timebetweenMoves = 4; 
 
     def __init__(self, x, y):
+        """ Initializes a Paddle """
         # X,Y are pos of upper left corner
         self._ready = False;
         self.X = x;
         self.Y = y;
         self.Width = 1;
         self.Height = 1;
+        self._timeAtNextMove = 0;
         self._ready = True;
-        self.timeAtNextMove = 0
 
     @property
     def X(self):
@@ -49,24 +57,27 @@ class Paddle(object):
     ### Events ###
     paddleMoveEvent = Event();
     def onPaddleMove(self):
+        """ Called when Paddle Moves Positions """
         Paddle.paddleMoveEvent.call(self, self.X, self.Y);
 
     def movePaddle(self, Ball):
         """ Computer's Algorithim to Move Paddle """
         Center = Ball.Y + Ball.Height/2;
-        if Center > self.Y + self.Height/2 and self.checkTime():
+        if Center > self.Y + self.Height/2 and self._checkTime():
             self.Y += 1;
-            self.timeAtNextMove = time.time() + self.timebetweenMoves/1000;
-        if Center < self.Y + self.Height/2 and self.checkTime():
+            self._timeAtNextMove = time.time() + self.timebetweenMoves/1000;
+        if Center < self.Y + self.Height/2 and self._checkTime():
             self.Y -= 1;
-            self.timeAtNextMove = time.time() + self.timebetweenMoves/1000;
+            self._timeAtNextMove = time.time() + self.timebetweenMoves/1000;
     
-    def checkTime(self)->bool:
-        if time.time() > self.timeAtNextMove:
+    def _checkTime(self)->bool:
+        """ Check to see if enough time has passed to move """
+        if time.time() > self._timeAtNextMove:
             return True;
         else:
             return False;
 
     def reset(self, X, Y):
+        """ resets Paddle Position """
         self.X = X;
         self.Y = Y;

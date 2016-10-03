@@ -8,15 +8,24 @@ class Ball(object):
     Returns: Ball object
     @Methods
     calc_new_pos
+    OnCalcNewPosEvent
+    bounceWall
+    bouncePaddle
+    setShape
+    reset
     @Attributes 
     X
     Y
     _vector: Holds information for movement
+    Width
+    Height
+    isHit
     """
     ### MAGIC METHODS ###
     def __init__(self,x:int,y:int,angle:float,speed:int):
         """
         Initalizes Ball Obect
+        @Properties
         x: Sets Initial X coord
         y: Sets Initial Y coord
         angle: Sets angle component for _vector, in Radians
@@ -49,6 +58,7 @@ class Ball(object):
     ### EVENTS ###
     calcNewPosEvent = Event();
     def OnCalcNewPosEvent(self):
+        """ Called When New Position is Caclucalted """
         Ball.calcNewPosEvent.call(self, self.X, self.Y);
     ### METHODS ###
     def calc_new_pos(self)->None:
@@ -74,6 +84,7 @@ class Ball(object):
         self.Height = height;
 
     def reset(self, X, Y):
+        """ Reset Ball after going off edge """
         self.X = X;
         self.Y = Y;
         self._vector = pi-self._vector[0], self._vector[1]

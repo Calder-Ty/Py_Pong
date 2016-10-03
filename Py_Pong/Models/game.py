@@ -5,9 +5,27 @@ from math import pi;
 
 
 class Game(object):
+    """
+    Holds Manages Game (Data) Objects, and calculates Game Logic
+
+    @Methods
+    check_Colisions
+    update
+    reset
+
+    @Attributes
+    Field_Width: int
+    Field_Height: int
+    point_player: int
+    points_computer: int
+    outOfBounds: bool
+    PlayerPaddle: Py_Pong.Models.paddle.Paddle
+    ComputerPaddle: Py_Pong.Models.paddle.Paddle
+    ball: Py_Pong.Models.ball.Ball
+    """
 
     def __init__(self):
-
+        """ Initilizes Game object """
         # Set Field Dimensions 
         self.Field_Width = 900;
         self.Field_Height = 600;
@@ -24,7 +42,8 @@ class Game(object):
 
 
     # TODO: Make this more of a communication between Paddle and ball.
-    def check_Colisions(self):
+    def check_Colisions(self)->None:
+        """ Checks if Ball has Collieded with edges or Paddles """
         # Did it go past the Edge?
         if self.ball.X + self.ball.Width > self.Field_Width or self.ball.X < 0:
             if self.ball.X < 0 and not self.outOfBounds:
@@ -58,14 +77,16 @@ class Game(object):
         else:
             self.ball.isHit = False;
 
-    def update(self):
+    def update(self)->None:
+        """ Calls functions to update Game Data """
         # move the ball
         self.ball.calc_new_pos();
         self.check_Colisions();
         if not self.outOfBounds:
             self.ComputerPaddle.movePaddle(self.ball);
 
-    def reset(self):
+    def reset(self)->None:
+        """ Resets Table after ball goes out of bounds """
         if self.ball.X + self.ball.Width < -100 or self.ball.X > self.Field_Width + 100:
             self.ball.reset(self.Field_Width/2, self.Field_Height/2);
             self.outOfBounds = False;
